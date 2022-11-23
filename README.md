@@ -110,3 +110,74 @@ pseudo code
     - because it's gonna be a unique string every time
 
 4. Checkout the `cache.js` file in your services directory.
+
+
+## Test with Jest and Puppeteer
+---
+
+### Create a Fake session For by passing authentication during testing
+
+- First logout if you are logged in.
+- Then click to log in.
+- Choose the account and whatever to log in. Keep the network tab open.
+
+- Or just go to application tab in chrome and check your cookie from there if you know that name.
+
+- First link or a callback link in the network tab after successful login will have setcookie parameter in headers.
+- Copy the cookie value which will be something like *ma9823698ksanfdasjkhf09817234*.
+
+
+#### Then go to terminal and type the following
+
+```
+<!-- Type Node in terminal and press enter -->
+node
+
+> const session = `eyJwYXNzcG9ydCI6eyJ1c2VyIjoiNjM3NzgwNDgyYWQ4MmEyNGU0MGFlMjNjIn19`
+undefined
+> const Buffer = require('safe-buffer').Buffer;
+undefined
+> Buffer.from(session, 'base64').toString('utf8');
+'{"passport":{"user":"637780482ad82a24e40ae23c"}}'
+>
+```
+
+*This won't work completely as there is also session signature*
+
+Keygrip is responsible for generating session from session key.
+### To generate signature from session
+```
+const session = 'eyJwYXNzcG9ydCI6eyJ1c2VyIjoiNjM3NzgwNDgyYWQ4MmEyNGU0MGFlMjNjIn19'
+undefined
+> const keygrip = require('keygrip')
+undefined
+> const Keygrip = new keygrip(['123123123'])
+undefined
+> Keygrip.sign('session=' + session)
+'gqjF8b-KBG9Sg31VgPT6b2c6yfw'
+
+<!-- Reverifying the session using session key -->
+> Keygrip.verify('session=' + session, 'gqjF8b-KBG9Sg31VgPT6b2c6yfw')
+true
+```
+
+
+### Updating puppeteer library
+---
+
+Even with the userFactory setup and Session Factory setup loging in every time can be very repetitive task. So one way to do this is 
+to update the `class page in puppeteer lib.`
+
+To do that -
+```
+const Page = require('puppeteer/lib/Page');
+Page.protoype.login = async function() {
+    const user = await userFactory();
+    const { session, sig } = sessionFactory(user);
+    await page.setCookie({ name: 'session', value: session });
+    await page.setCookie({ name: 'session.sig', value: sig });
+    await page.goto('localhost:3000');
+}
+```
+
+`This will work absolutly fine.`
