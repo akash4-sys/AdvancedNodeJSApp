@@ -1,3 +1,6 @@
+// @ So this was originally the headers.test.js but due to a lot of the changes
+// @ i left this file as it is becoz of all the comments
+
 const puppeteer = require('puppeteer');
 const sessionFactory = require('./common/sessionFactory');
 const userFactory = require('./common/userFactory');
