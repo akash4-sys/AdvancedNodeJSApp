@@ -1,0 +1,25 @@
+# Not in use
+
+
+language: node_js 	# js in travis is listed as node_js
+node_js:
+	- "8"	# version of node
+dist: trusty # OS a version of linux
+services:
+	- mongodb
+	- redis-server
+env:
+	- NODE_ENV=ci PORT=3000
+cache:		# every time travis install node project it will have to install node dependencies and that is slow
+	- node_modules
+	- client/node_modules
+install:	# add as many commands as you may want
+	- npm install
+	- npm run build		# this command is defined in package.json of this project
+script: 
+	# in terminal when we run npm run start terminal gets occupied with server, to run other commands we are here using &.
+	# nohup is simply to not kill process that this terminal creates
+	# it's only for osx and windows
+	- nohup npm run start &
+	- sleep 3  # give server time to start up or otherwise tests will just fail
+	- npm run test

@@ -3,7 +3,7 @@ const Page = require('./helpers/page');
 let page;
 beforeEach(async () => {
     page = await Page.build();
-    await page.goto('localhost:3000');
+    await page.goto('http://localhost:3000');
 }, 50000);
 
 afterEach(async () => {
@@ -117,12 +117,12 @@ describe('When user is not logged in', async () => {
     const actions = [
         {
             "path": "/api/blogs",
-            "method": "POST",
+            "method": "post",
             "data": { title: 'Title', content: 'Content' }
         },
         {
             "path": "/api/blogs",
-            "method": "GET"
+            "method": "get"
         }
     ];
 

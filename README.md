@@ -181,3 +181,25 @@ Page.protoype.login = async function() {
 ```
 
 `This will work absolutly fine.`
+
+## CI Flow
+---
+
+- Developer pushes code to github.
+- CI server detects that a new push of code has occurred.
+- CI server clones project to a cloud based virtual machine.
+- CI server runs all test.
+- CI server marks build as passing and do some optional followup.
+
+### CI providers
+- There are many CI providers. Providers are company that provides the CI server for us.
+Some examples are
+- Travis CI
+- Circle CI
+- Codeship
+- AWS Codebuild
+
+### YAML
+YAML is used to create configuration files with any programming languages. It is essentially key value pair so they can be easily converted into json.
+
+For nested do indentation like in python and for array put a - before every item of array.

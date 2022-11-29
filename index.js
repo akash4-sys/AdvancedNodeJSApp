@@ -35,7 +35,8 @@ app.get('/', (req, res) => {
 require('./routes/authRoutes')(app);
 require('./routes/blogRoutes')(app);
 
-if (['production'].includes(process.env.NODE_ENV)) {
+// If we are in production or ci mode serve the react files as well
+if (['production', 'ci'].includes(process.env.NODE_ENV)) {
 	app.use(express.static('client/build'));
 
 	const path = require('path');

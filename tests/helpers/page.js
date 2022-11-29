@@ -11,7 +11,8 @@ class CustomPage {
 
     static async build() {
         const browser = await puppeteer.launch({
-            headless: false
+            headless: true,             // for ci server
+            args: ['--no-sandbox']          // for ci server
         });
 
         const page = await browser.newPage();
@@ -38,7 +39,8 @@ class CustomPage {
         const { session, sig } = sessionFactory(user);
         await this.page.setCookie({ name: 'session', value: session });
         await this.page.setCookie({ name: 'session.sig', value: sig });
-        await this.page.goto('localhost:3000/blogs');
+        await this.page.goto('http://localhost:3000/blogs'); //for ci server
+        // await this.page.goto('localhost:3000/blogs'); fine for dev env
     }
 
     async getText(selector) {
