@@ -12,7 +12,7 @@ class CustomPage {
     static async build() {
         const browser = await puppeteer.launch({
             headless: true,             // for ci server
-            args: ['--no-sandbox']          // for ci server
+            args: ['--no-sandbox', '-disable-setuid-sandbox']          // for ci server
         });
 
         const page = await browser.newPage();

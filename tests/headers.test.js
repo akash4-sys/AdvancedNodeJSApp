@@ -11,7 +11,7 @@ afterEach(async () => {
     await page.close();
 });
 
-test('Launch Chromium Instance', async () => {
+test.only('Launch Chromium Instance', async () => {
     const text = await page.getText('a.brand-logo');
     expect(text).toEqual('Blogster');
 });

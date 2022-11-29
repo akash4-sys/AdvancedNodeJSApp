@@ -10,6 +10,11 @@ afterEach(async () => {
     await page.close();
 });
 
+test.only('Testing simple test', () => {
+    const a = 5;
+    expect(a).toEqual(5);
+})
+
 
 describe('When logged in', async () => {
     // @ only for tests inside describe statement
