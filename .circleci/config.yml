@@ -25,7 +25,10 @@ jobs:
                   pkg-manager: npm
             - run:
                   name: Build the project
-                  command: npm run build
+                  command: npm run ci-build-react
+            - run:
+                  name: Sleep for a few seconds
+                  command: sleep 5
             - run:
                   name: Start the server
                   command: |
