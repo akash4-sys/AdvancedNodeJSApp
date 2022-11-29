@@ -24,10 +24,19 @@ jobs:
             - node/install-packages:
                   pkg-manager: npm
             - run:
+                  name: Build the project
+                  command: npm run build
+            - run:
+                  name: Start the server
+                  command: |
+                    npm run start reportDir=test-results reportFilename=test-results
+            - run:
                   name: Run tests
                   command: npm run test
             - store_test_results:
-                path: test-results.xml
+                path: test-results
+            - store_artifacts:
+                path: test-results
 
 workflows:
     # Below is the definition of your workflow.
