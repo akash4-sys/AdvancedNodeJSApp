@@ -25,14 +25,17 @@ jobs:
                   pkg-manager: npm
             - run:
                   name: Build the project
-                  command: npm run ci-build-react
+                  command: npm run build
             - run:
-                  name: Sleep for a few seconds
-                  command: sleep 5
+                  name: Serve Client
+                  command: npm run react
             - run:
                   name: Start the server
                   command: |
                     npm run start reportDir=test-results reportFilename=test-results
+            - run:
+                  name: Sleep for a few seconds
+                  command: sleep 5
             - run:
                   name: Run tests
                   command: npm run test
