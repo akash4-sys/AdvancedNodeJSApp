@@ -8,7 +8,7 @@
 		"server": "nodemon index.js --ignore tests",
 		"client": "npm run start --prefix client",
 		"dev": "concurrently \"npm run server\" \"npm run client\"",
-		"build": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && CI='' npm run build --prefix client --force",
+		"build": "NPM_CONFIG_PRODUCTION=false npm install --prefix client --force && CI='' npm run build --prefix client",
 		"heroku-postbuild": "npm run build",
 		"test": "jest",
 		"react":"cd ./client && serve -s build",
