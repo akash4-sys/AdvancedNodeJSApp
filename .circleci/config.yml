@@ -23,12 +23,12 @@ jobs:
           paths:
             - ./node_modules
       - run:
-          name: Build React App
-          command: npm run build
-      - run:
-          name: Run Client
+          name: Start Client
           command: npm run react
           background: true
+      - run:
+          name: Sleep Sys
+          command: Sleep 3
       - run:
           name: Run tests
           command: npm run test
