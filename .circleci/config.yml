@@ -1,9 +1,11 @@
+#  This config is limited to this project only otherwise for projects with client and server on different repo config will be much easier
+
 version: 2.1
 jobs:
   build:
     working_directory: ~/repo
     docker:
-        - image: cimg/node:19.1.0-browsers
+        - image: cimg/node:18.12.1
         - image: cimg/redis:7.0
         - image: mongo:latest
     steps:
