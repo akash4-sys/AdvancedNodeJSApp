@@ -28,6 +28,7 @@ jobs:
       - run:
           name: Run Client
           command: npm run react
+          background: true
       - run:
           name: Run tests
           command: npm run test
