@@ -11,8 +11,7 @@
 		"build": "NPM_CONFIG_PRODUCTION=false npm install --prefix client --force && CI='' npm run build --prefix client",
 		"heroku-postbuild": "npm run build",
 		"test": "jest",
-		"react":"cd ./client && serve -s build",
-		"ci": "concurrently \"npm run server\" \"npm run react\""
+		"react":"cd ./client && serve -s build"
 	},
 	"author": "",
 	"license": "ISC",
