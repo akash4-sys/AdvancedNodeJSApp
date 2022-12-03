@@ -27,9 +27,6 @@ jobs:
           command: npm run react
           background: true
       - run:
-          name: Sleep Sys
-          command: Sleep 3
-      - run:
           name: Run tests
           command: npm run test
       - save_cache:
