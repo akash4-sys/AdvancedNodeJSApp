@@ -1,3 +1,4 @@
+# ! this file does not need to be in .travis folder, it's just for making it easier to find
 # Not in use
 
 
@@ -19,7 +20,7 @@ install:	# add as many commands as you may want
 script: 
 	# in terminal when we run npm run start terminal gets occupied with server, to run other commands we are here using &.
 	# nohup is simply to not kill process that this terminal creates
-	# it's only for osx and windows
+	# it's only for macOS and linux
 	- nohup npm run start &
 	- sleep 3  # give server time to start up or otherwise tests will just fail
 	- npm run test
